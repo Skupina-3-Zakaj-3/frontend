@@ -1,0 +1,18 @@
+.dropdown-toggle, .dropdown-menu {
+  cursor: pointer;
+}
+
+a.nav-link {
+  color: white;
+}
+
+small {
+  color: white;
+}
+
+#sticky-footer {
+  position: fixed;
+  bottom: 0;
+  display: block;
+  width: 100%;
+}

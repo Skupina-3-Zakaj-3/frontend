@@ -1,0 +1,16 @@
+.obrazec {
+    text-align: center;
+    margin-top: 50px;
+    /*margin-bottom: 100px;*/
+}
+
+.page-wrapper {
+    /*min-height: 100%;*/
+    margin-bottom: 295px;
+}
+
+#sticky-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
