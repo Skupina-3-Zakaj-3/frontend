@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { AuthenticationService } from "../services/authentication.service";
 // import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 
 @Component({
@@ -8,9 +9,14 @@ import { Router } from "@angular/router";
     styleUrls: ["./prijava.component.css"],
 })
 export class PrijavaComponent implements OnInit {
-    constructor(private usmerjevalnik: Router) {}
+    constructor(
+        private usmerjevalnik: Router,
+        private authenticationService: AuthenticationService
+    ) {}
 
     ngOnInit() {}
 
-    izvediPrijavo() {}
+    izvediPrijavo() {
+        this.authenticationService.googlePrijava();
+    }
 }

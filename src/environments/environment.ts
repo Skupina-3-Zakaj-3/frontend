@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://api.prpo.si/v1'
+    apiUrl: "http://20.72.172.42",
 };
