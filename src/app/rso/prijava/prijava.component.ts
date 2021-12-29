@@ -1,19 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 // import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 
-
 @Component({
-  selector: 'app-prijava',
-  templateUrl: './prijava.component.html',
-  styleUrls: ['./prijava.component.css']
+    selector: "app-prijava",
+    templateUrl: "./prijava.component.html",
+    styleUrls: ["./prijava.component.css"],
 })
 export class PrijavaComponent implements OnInit {
+    constructor(private usmerjevalnik: Router) {}
 
-  constructor(
-    private usmerjevalnik: Router,
-  ) { }
+    ngOnInit() {}
 
-  ngOnInit() {
-  }
+    izvediPrijavo() {}
 }
