@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { AuthenticationService } from "../services/authentication.service";
+import { AuthenticationService } from "../../services/authentication.service";
 // import { AvtentikacijaService } from '../../storitve/avtentikacija.service';
 
 @Component({
@@ -12,9 +12,9 @@ export class PrijavaComponent implements OnInit {
     constructor(
         private usmerjevalnik: Router,
         private authenticationService: AuthenticationService
-    ) {}
+    ) { }
 
-    ngOnInit() {}
+    ngOnInit() { }
 
     izvediPrijavo() {
         this.authenticationService.googlePrijava();

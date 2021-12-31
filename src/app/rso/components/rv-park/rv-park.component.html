@@ -1,0 +1,51 @@
+<!-- <div *ngIf="isLoggedIn()">
+
+  <div class="page-wrapper">
+    <div class="container">
+
+      <ul class="list-group">
+        <li *ngFor="let park of parks" class="list-group-item">
+          <div>
+            <b>
+              {{park.name}}
+            </b>
+            <b>
+              {{park.description}}
+            </b>
+            <b>
+              {{park.cost_per_day}}
+            </b>
+            <button (click)="prikaziPodrobnosti(uporabnik)" class="btn btn-primary">
+              Podrobnosti
+            </button>
+            <button (click)="prikaziModalnoOkno(uporabnik)" class="btn btn-danger">
+              Izbriši
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="card">
+    <ul class="list-group p-3">
+      <li class="list-group-item list-group-item-primary" *ngFor="let park of parks">
+        <strong>IME:</strong> {{park.name}}
+        <div><strong>CENA NA DAN:</strong> {{park.cost_per_day}}€</div>
+        <div><strong>OPIS:</strong> {{park.description}}</div>
+        <div><strong>LOKACIJA:</strong> {{park.location}}</div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button (click)="makeReservation(park)" class="btn btn-primary">REZERVIRAJ</button>
+          <button (click)="delete(park)" class="btn btn-danger">IZBRIŠI</button>
+          <!-- <button (click)="podrobnostiBota()" class="btn btn-info" type="button" data-toggle="collapse" [attr.data-target]="'#'+ bot._id" aria-expanded="false">Podrobnosti</button> -->
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- <div *ngIf="!stBotov" class="alert alert-primary" role="alert">
+    Trenutno ni naprodaj noben bot!
+  </div> -->
+</div>

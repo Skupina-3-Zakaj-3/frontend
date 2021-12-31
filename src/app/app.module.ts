@@ -1,4 +1,6 @@
-import { PrijavaComponent } from './rso/prijava/prijava.component';
+import { RvParkComponent } from './rso/components/rv-park/rv-park.component';
+import { OgrodjeComponent } from './rso/components/ogrodje/ogrodje.component';
+import { PrijavaComponent } from './rso/components/prijava/prijava.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { OgrodjeComponent } from './rso/ogrodje/ogrodje.component';
 import { RsoService } from './rso/services/rso.service';
 
 
@@ -21,7 +22,8 @@ import { RsoService } from './rso/services/rso.service';
     declarations: [
         AppComponent,
         PrijavaComponent,
-        OgrodjeComponent
+        OgrodjeComponent,
+        RvParkComponent
     ],
     providers: [RsoService],
     bootstrap: [OgrodjeComponent]
