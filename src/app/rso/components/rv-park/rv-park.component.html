@@ -1,34 +1,16 @@
-<!-- <div *ngIf="isLoggedIn()">
-
-  <div class="page-wrapper">
-    <div class="container">
-
-      <ul class="list-group">
-        <li *ngFor="let park of parks" class="list-group-item">
-          <div>
-            <b>
-              {{park.name}}
-            </b>
-            <b>
-              {{park.description}}
-            </b>
-            <b>
-              {{park.cost_per_day}}
-            </b>
-            <button (click)="prikaziPodrobnosti(uporabnik)" class="btn btn-primary">
-              Podrobnosti
-            </button>
-            <button (click)="prikaziModalnoOkno(uporabnik)" class="btn btn-danger">
-              Izbriši
-            </button>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div> -->
-
 <div class="container">
+  <!-- <div class="card">
+    <div class="card-body text-center">
+      <button (click)="kreirajParkModal()" class="btn btn-primary">
+        Dodaj nov RV park <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  </div> -->
+  <button (click)="kreirajParkModal()" class="btn btn-primary">
+    Dodaj nov RV park <i class="fas fa-plus"></i>
+  </button>
+  <br>
+
   <div class="card">
     <ul class="list-group p-3">
       <li class="list-group-item list-group-item-primary" *ngFor="let park of parks">
@@ -38,14 +20,57 @@
         <div><strong>LOKACIJA:</strong> {{park.location}}</div>
         <div class="btn-group" role="group" aria-label="Basic example">
           <button (click)="makeReservation(park)" class="btn btn-primary">REZERVIRAJ</button>
-          <button (click)="delete(park)" class="btn btn-danger">IZBRIŠI</button>
-          <!-- <button (click)="podrobnostiBota()" class="btn btn-info" type="button" data-toggle="collapse" [attr.data-target]="'#'+ bot._id" aria-expanded="false">Podrobnosti</button> -->
+          <button (click)="deletePark(park)" class="btn btn-danger">IZBRIŠI</button>
         </div>
       </li>
     </ul>
   </div>
+</div>
 
-  <!-- <div *ngIf="!stBotov" class="alert alert-primary" role="alert">
-    Trenutno ni naprodaj noben bot!
-  </div> -->
+
+<!-- Modal ustvari -->
+<div #ustvariParkModal class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Dodaj nov RV park</h3>
+        <button (click)="zapriModalnoOkno()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <app-ustvarjanje-parka [trenutniUporabnik]="trenutniUporabnik">
+        </app-ustvarjanje-parka> -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <form (ngSubmit)="kreirajPark()">
+                <div class="form-group">
+                  <label>Ime parka</label>
+                  <input [(ngModel)]="newPark.name" id="name" type="text" class="form-control" placeholder="Vnesite ime bota" required name="name" />
+                </div>
+                <div class="form-group">
+                  <label>Opis parka</label>
+                  <input [(ngModel)]="newPark.description" id="description" placeholder="Vnesite opis bota" type="text" class="form-control" required name="description" />
+                </div>
+                <div class="form-group">
+                  <label>Cena rezervacije na dan</label>
+                  <input [(ngModel)]="newPark.cost_per_day" id="cost_per_day" placeholder="Vnesite ceno rezervacije na dan" type="number" class="form-control" required name="cost_per_day" />
+                </div>
+                <div class="form-group">
+                  <label>Lokacija parka</label>
+                  <input [(ngModel)]="newPark.location" id="location" placeholder="Vnesite lokacijo parka" type="text" class="form-control" required name="location" />
+                </div>
+                <div class="form-group">
+                  <button type="submit" id="ustvari_park_button" class="btn btn-danger">
+                    Ustvari park
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

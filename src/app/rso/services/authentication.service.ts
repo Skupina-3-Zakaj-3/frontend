@@ -10,7 +10,7 @@ import { ApiEndpoints } from "./api-endpoints";
 })
 export class AuthenticationService {
     baseUrl = environment.apiUrl;
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
     private _appUser: User;
     get appUser() {
         return this._appUser;
@@ -28,6 +28,7 @@ export class AuthenticationService {
                 name: message.data.name,
                 surname: message.data.surname,
                 email: message.data.email,
+                user_id: 1
             };
             console.log(this._appUser);
         });
@@ -43,6 +44,6 @@ export class AuthenticationService {
     }
 
     public isLoggedIn() {
-        return localStorage.getItem("access_token") != null && this._appUser;
+        return localStorage.getItem("access_token") != null && this._appUser != null;
     }
 }
