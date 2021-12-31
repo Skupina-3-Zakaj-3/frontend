@@ -1,3 +1,4 @@
+import { RvReviewComponent } from './rso/components/rv-review/rv-review.component';
 import { RvParkComponent } from './rso/components/rv-park/rv-park.component';
 import { OgrodjeComponent } from './rso/components/ogrodje/ogrodje.component';
 import { PrijavaComponent } from './rso/components/prijava/prijava.component';
@@ -23,7 +24,8 @@ import { RsoService } from './rso/services/rso.service';
         AppComponent,
         PrijavaComponent,
         OgrodjeComponent,
-        RvParkComponent
+        RvParkComponent,
+        RvReviewComponent,
     ],
     providers: [RsoService],
     bootstrap: [OgrodjeComponent]
