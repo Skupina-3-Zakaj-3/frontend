@@ -1,3 +1,4 @@
+import { WeatherComponent } from './rso/components/weather/weather.component';
 import { RvReviewComponent } from './rso/components/rv-review/rv-review.component';
 import { RvParkComponent } from './rso/components/rv-park/rv-park.component';
 import { OgrodjeComponent } from './rso/components/ogrodje/ogrodje.component';
@@ -26,6 +27,7 @@ import { RsoService } from './rso/services/rso.service';
         OgrodjeComponent,
         RvParkComponent,
         RvReviewComponent,
+        WeatherComponent,
     ],
     providers: [RsoService],
     bootstrap: [OgrodjeComponent]

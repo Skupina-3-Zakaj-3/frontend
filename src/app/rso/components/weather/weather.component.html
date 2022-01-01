@@ -1,0 +1,21 @@
+<form (ngSubmit)="getWeather()" class="form-inline">
+  <div class="form-group mb-2">
+    <b>Vreme</b>
+    <div class="form-group mx-sm-3 mb-2">
+      <input [(ngModel)]="newWeather.locationName" type="text" class="form-control" id="locationName" placeholder="Vnesite ime kraja" required name="locationName">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Potrdi</button>
+</form>
+
+
+<div *ngIf="weather">
+  <div>
+    <b>{{weather.locationName}}</b>
+  </div>
+  <span *ngFor="let day of weather.forecastDaysList">
+    <i>{{day.date}}: </i> <small><b>MAX:</b></small> {{day.maxTemp}}&#8451;, <small><b>MIN:</b></small> {{day.minTemp}}&#8451;
+    <img src="{{day.iconUrl}}" alt="alternatetext">
+    <b style="font-size: large;"> | </b>
+  </span>
+</div>
