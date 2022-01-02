@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { RsoService } from './rso/services/rso.service';
+import { ReservationsComponent } from './rso/components/reservations/reservations.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { RsoService } from './rso/services/rso.service';
         RvParkComponent,
         RvReviewComponent,
         WeatherComponent,
+        ReservationsComponent,
     ],
     providers: [RsoService],
     bootstrap: [OgrodjeComponent]

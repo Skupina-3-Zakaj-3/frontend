@@ -1,19 +1,20 @@
-import { RvReviewComponent } from './rso/components/rv-review/rv-review.component';
-import { RvParkComponent } from './rso/components/rv-park/rv-park.component';
-import { PrijavaComponent } from './rso/components/prijava/prijava.component';
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { RvReviewComponent } from "./rso/components/rv-review/rv-review.component";
+import { RvParkComponent } from "./rso/components/rv-park/rv-park.component";
+import { PrijavaComponent } from "./rso/components/prijava/prijava.component";
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
+import { ReservationsComponent } from "./rso/components/reservations/reservations.component";
 
 const routes: Routes = [
-    { path: '', redirectTo: '/prijava', pathMatch: 'full' },
-    { path: 'prijava', component: PrijavaComponent },
-    { path: 'parks', component: RvParkComponent },
-    { path: 'reviews', component: RvReviewComponent },
+    { path: "", redirectTo: "/prijava", pathMatch: "full" },
+    { path: "prijava", component: PrijavaComponent },
+    { path: "parks", component: RvParkComponent },
+    { path: "reviews", component: RvReviewComponent },
+    { path: "reservations", component: ReservationsComponent },
 ];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

@@ -1,3 +1,4 @@
+<!-- prettier-ignore -->
 <header>
   <nav class="navbar navbar-expand-lg bg-dark">
     <a routerLink="" class="navbar-brand ml-3"><span style="color: #00e8e8;">RV</span>&v<span style="color: #00e8e8;"></span></a>
@@ -18,41 +19,56 @@
           <a routerLink="/parks" class="nav-link">Katalog RV parkov <i class="fas fa-parking"></i></a>
         </li>
       </ul>
+
+      <ul class="navbar-nav justify-content-end">
+        <li *ngIf="!jePrijavljen()" class="nav-item" routerLinkActive="active">
+          <a routerLink="/prijava" class="nav-link"><i class="fab fa-google"></i> Prijava</a>
+        </li>
+        <li *ngIf="jePrijavljen()" class="nav-item dropdown" routerLinkActive="active">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{getAppUser().email}}</a>
+          <div *ngIf="getAppUser()" class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" routerLink="/reservations">Pregled rezervacij</a>
+            <a class="dropdown-item" (click)="odjava()">Odjava</a>
+          </div>
+        </li>
+      </ul>
+
     </div>
   </nav>
 </header>
 
 <div class="container">
-  <!--<app-prijavna-stran></app-prijavna-stran>-->
-  <router-outlet></router-outlet>
+    <!--<app-prijavna-stran></app-prijavna-stran>-->
+    <router-outlet></router-outlet>
 </div>
 
 <!-- Footer -->
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-  <div class="text-center">
-    <small>Copyright &copy; Designed by @FRI_STUDENTS</small>
-  </div>
+    <div class="text-center">
+        <small>Copyright &copy; Designed by @FRI_STUDENTS</small>
+    </div>
 </footer>
 <!-- Footer -->
 
-
 <!-- Modal -->
 <div #odjavaModal class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Opozorilo!</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Ste prepričani, da se želite odjaviti?</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-danger" (click)="odjava()" data-dismiss="modal">Da</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Prekliči</button>
-      </div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Opozorilo!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Ste prepričani, da se želite odjaviti?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-danger" (click)="odjava()" data-dismiss="modal">Da</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                    Prekliči
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
