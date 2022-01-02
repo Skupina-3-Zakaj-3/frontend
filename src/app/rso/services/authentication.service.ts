@@ -10,7 +10,7 @@ import { ApiEndpoints } from "./api-endpoints";
 })
 export class AuthenticationService {
     baseUrl = environment.apiUrl;
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {}
     private _appUser: User;
     get appUser() {
         return this._appUser;
@@ -28,7 +28,7 @@ export class AuthenticationService {
                 name: message.data.name,
                 surname: message.data.surname,
                 email: message.data.email,
-                user_id: 1
+                user_id: message.data.userId,
             };
             console.log(this._appUser);
         });
