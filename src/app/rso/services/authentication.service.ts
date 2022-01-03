@@ -64,6 +64,6 @@ export class AuthenticationService {
         };
     }
     public isLoggedIn() {
-        return localStorage.getItem("access_token") != null && this._appUser != null;
+        return localStorage.getItem("access_token") != null;
     }
 }
