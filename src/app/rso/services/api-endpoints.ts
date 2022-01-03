@@ -3,7 +3,7 @@ export enum ApiEndpoints {
     users = "/users/v1",
     reviews = "/reviews/v1",
     rvs = "/rvs/v1",
-    rvTenancies = "/rv-tenancies/v1",
+    rvTenancies = "/reservations/v1",
     rvParks = "/parks/v1",
     rvReviews = "/reviews/v1",
     weather = "/weather/v1",

@@ -30,7 +30,6 @@ export class AuthenticationService {
                 email: message.data.email,
                 user_id: message.data.userId,
             };
-            console.log(this._appUser);
         });
     }
 

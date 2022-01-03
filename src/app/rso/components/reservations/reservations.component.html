@@ -10,15 +10,9 @@
 
   <div class="card">
     <ul class="list-group p-3">
-      <li class="list-group-item list-group-item-primary" *ngFor="let park of parks">
-        <strong>IME:</strong> {{park.name}}
-        <div><strong>CENA NA DAN:</strong> {{park.cost_per_day}}€</div>
-        <div><strong>OPIS:</strong> {{park.description}}</div>
-        <div><strong>LOKACIJA:</strong> {{park.location}}</div>
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button (click)="makeReservation(park)" class="btn btn-primary">REZERVIRAJ</button>
-          <button (click)="deletePark(park)" class="btn btn-danger">IZBRIŠI</button>
-        </div>
+      <li class="list-group-item list-group-item-primary" *ngFor="let rvReservation of rvReservations">
+        {{rvReservation.reservationId}}
+    
       </li>
     </ul>
   </div>

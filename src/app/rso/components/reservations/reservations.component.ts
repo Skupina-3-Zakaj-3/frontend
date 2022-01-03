@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { RvPark } from "../../models/rv-park";
+import { RvReservation } from "../../models/rv-reservation";
 import { AuthenticationService } from "../../services/authentication.service";
 import { RvParkService } from "../../services/rv-park.service";
+import { RvTenancyService } from "../../services/rv-tenancy.service";
 
 @Component({
     selector: "app-reservations",
@@ -9,20 +11,21 @@ import { RvParkService } from "../../services/rv-park.service";
     styleUrls: ["./reservations.component.css"],
 })
 export class ReservationsComponent implements OnInit {
-    public parks: RvPark[];
+    public rvReservations: RvReservation[];
     constructor(
-        private rvParkService: RvParkService,
+        private rvTenancyService: RvTenancyService,
         private authenticationService: AuthenticationService
     ) {}
 
     ngOnInit() {
-        this.getRvParks();
+        this.getRvReservations();
     }
 
-    private getRvParks(): void {
-        this.rvParkService.getRvParks().then((parks) => {
-            console.log(parks);
-            this.parks = parks;
-        });
+    private getRvReservations(): void {
+        this.rvTenancyService
+            .getUserReservations(1 /* this.authenticationService.appUser.user_id */)
+            .subscribe((res) => {
+                this.rvReservations = res;
+            });
     }
 }
