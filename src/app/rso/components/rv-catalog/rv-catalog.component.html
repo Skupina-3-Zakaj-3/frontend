@@ -48,7 +48,7 @@
                 <form (ngSubmit)="createRv()">
                   <div class="form-group">
                     <label>Kapaciteta vozila</label>
-                    <input [(ngModel)]="newRv.capacity" id="name" type="text" class="form-control" placeholder="Vnesite kapaciteto vozila" required name="name" />
+                    <input [(ngModel)]="newRv.capacity" id="capacity" type="number" class="form-control" placeholder="Vnesite kapaciteto vozila" required name="capacity" />
                   </div>
                   <div class="form-group">
                     <label>Opis vozila</label>
@@ -60,11 +60,11 @@
                   </div>
                   <div class="form-group">
                     <label>Znamka</label>
-                    <input [(ngModel)]="newRv.manufacturer" id="location" placeholder="Vnesite znamko vozila" type="text" class="form-control" required name="location" />
+                    <input [(ngModel)]="newRv.manufacturer" id="manufacturer" placeholder="Vnesite znamko vozila" type="text" class="form-control" required name="manufacturer" />
                   </div>
                   <div class="form-group">
                     <label>Letnik</label>
-                    <input [(ngModel)]="newRv.year" id="location" placeholder="Vnesite letnik vozila" type="text" class="form-control" required name="location" />
+                    <input [(ngModel)]="newRv.year" id="year" placeholder="Vnesite letnik vozila" type="number" class="form-control" required name="year" />
                   </div>
                   <div class="form-group">
                     <button type="submit" id="addRvButton" class="btn btn-danger">

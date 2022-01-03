@@ -14,8 +14,8 @@ export class RvCatalogService {
   baseUrl = environment.apiUrl;
 
   public getRvs(): Promise<any> {
-    const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs`;
-    // const url = 'http://localhost:8081/v1/rvs'
+    // const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs`;
+    const url = 'http://localhost:8081/v1/rvs'
     return this.http
       .get(url)
       .toPromise()
@@ -32,8 +32,8 @@ export class RvCatalogService {
   // }
 
   public createRv(rv: Rv): Promise<Rv> {
-    const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs`;
-    // const url = 'http://localhost:8081/v1/rvs'
+    // const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs`;
+    const url = 'http://localhost:8081/v1/rvs'
     return this.http
       .post(url, rv)
       .toPromise()
