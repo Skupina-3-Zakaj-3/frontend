@@ -22,14 +22,14 @@ export class RvCatalogService {
       .then((odgovor) => odgovor as any);
   }
 
-  // public deletePark(rvParkId: number): Promise<any> {
-  //   const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks/${rvParkId}`;
-
-  //   return this.http
-  //     .delete(url)
-  //     .toPromise()
-  //     .catch(this.catchException);
-  // }
+  public deleteRv(rvId: number): Promise<any> {
+    // const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs/${rvId}`;
+    const url = `http://localhost:8081/v1/rvs/${rvId}`
+    return this.http
+      .delete(url)
+      .toPromise()
+      .catch(this.catchException);
+  }
 
   public createRv(rv: Rv): Promise<Rv> {
     // const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs`;

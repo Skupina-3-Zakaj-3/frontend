@@ -19,10 +19,10 @@
         <div><strong>CENA NA DAN:</strong> {{rv.cost_per_day}}€</div>
         <div><strong>OPIS:</strong> {{rv.description}}</div>
         <div><strong>ZNAMKA IN LETO:</strong> {{rv.manufacturer}} ({{rv.year}})</div>
-        <div><strong>OCENA:</strong> {{rv.rating}}({{rv.num_of_reviews}})</div>
+        <div><strong>OCENA:</strong> {{rv.rating}}({{rv.num_of_reviews}} ocen)</div>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <!-- <button (click)="makeReservation(park)" class="btn btn-primary">REZERVIRAJ</button> -->
-          <!-- <button (click)="deletePark(park)" class="btn btn-danger">IZBRIŠI</button> -->
+          <!-- <button (click)="makeReservation(rv)" class="btn btn-primary">REZERVIRAJ</button> -->
+          <button (click)="deleteRv(rv)" class="btn btn-danger">IZBRIŠI</button>
         </div>
       </li>
     </ul>

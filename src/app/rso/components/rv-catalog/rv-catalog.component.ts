@@ -56,6 +56,19 @@ export class RvCatalogComponent implements OnInit {
         });
   }
 
+  public deleteRv(rv: Rv): void {
+    this.rvCatalogService
+        .deleteRv(rv.rv_id)
+        .then(() => {
+          for (var i = 0; i < this.rvs.length; i++) {
+            if (this.rvs[i].rv_id === rv.rv_id) {
+                this.rvs.splice(i, 1);
+                break;
+            }
+        }
+        })
+  }
+
   private showCreateModal() {
     jQuery(this.createRvModal.nativeElement).modal("show");
   }
