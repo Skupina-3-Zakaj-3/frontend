@@ -13,6 +13,7 @@ export class AuthenticationService {
     constructor(private http: HttpClient) {}
     private _appUser: User;
     get appUser() {
+        if (!this._appUser) this.readUserFromLocalStorage();
         return this._appUser;
     }
 
@@ -22,28 +23,50 @@ export class AuthenticationService {
             "mywindow",
             "location=1,status=1,scrollbars=1, width=800,height=800"
         );
-        let listener = window.addEventListener("message", (message) => {
-            this.setSession(message.data.access_token);
-            this._appUser = {
-                name: message.data.name,
-                surname: message.data.surname,
-                email: message.data.email,
-                user_id: message.data.userId,
-            };
-            console.log(this._appUser);
+
+        return new Promise((resolve, reject) => {
+            window.addEventListener("message", (message) => {
+                this.setSession(
+                    message.data.access_token,
+                    message.data.email,
+                    message.data.userId,
+                    message.data.name,
+                    message.data.surname
+                );
+                this.readUserFromLocalStorage();
+                resolve(null);
+            });
         });
     }
 
-    private setSession(access_token: string) {
+    private setSession(
+        access_token: string,
+        email: string,
+        userId: string,
+        name: string,
+        surname: string
+    ) {
         localStorage.setItem("access_token", access_token);
+        localStorage.setItem("user_email", email);
+        localStorage.setItem("user_id", userId);
+        localStorage.setItem("user_name", name);
+        localStorage.setItem("user_surname", surname);
     }
 
     logout() {
-        localStorage.removeItem("access_token");
+        localStorage.clear();
         this._appUser = null;
     }
 
+    readUserFromLocalStorage() {
+        this._appUser = {
+            name: localStorage.getItem("user_name"),
+            surname: localStorage.getItem("user_surname"),
+            email: localStorage.getItem("user_email"),
+            user_id: Number(localStorage.getItem("user_id")),
+        };
+    }
     public isLoggedIn() {
-        return localStorage.getItem("access_token") != null && this._appUser != null;
+        return localStorage.getItem("access_token") != null;
     }
 }

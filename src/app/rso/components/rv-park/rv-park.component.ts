@@ -30,7 +30,6 @@ export class RvParkComponent implements OnInit {
 
     private getRvParks(): void {
         this.rvParkService.getRvParks().then((parks) => {
-            console.log(parks);
             this.parks = parks;
         });
     }
@@ -40,16 +39,14 @@ export class RvParkComponent implements OnInit {
     }
 
     public isLoggedIn(): boolean {
-        console.log("PRIJAVA " + this.authenticationService.isLoggedIn());
         return this.authenticationService.isLoggedIn();
     }
 
-    private makeReservation(park: RvPark) {
+    public makeReservation(park: RvPark) {
         console.log(this.authenticationService.appUser);
     }
 
     public deletePark(park: RvPark) {
-        console.log(park);
         this.rvParkService.deletePark(park.rv_park_id).then(() => {
             // window.location.reload();
             for (var i = 0; i < this.parks.length; i++) {
@@ -61,7 +58,7 @@ export class RvParkComponent implements OnInit {
         });
     }
 
-    private kreirajParkModal() {
+    public kreirajParkModal() {
         jQuery(this.ustvariParkModal.nativeElement).modal("show");
     }
 
@@ -70,7 +67,7 @@ export class RvParkComponent implements OnInit {
         jQuery(this.ustvariParkModal.nativeElement).modal("hide");
     }
 
-    private kreirajPark() {
+    public kreirajPark() {
         this.newPark.user_id = this.authenticationService.appUser.user_id;
         this.rvParkService
             .createPark(this.newPark)

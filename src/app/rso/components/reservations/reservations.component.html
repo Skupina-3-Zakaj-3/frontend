@@ -1,0 +1,38 @@
+<!-- prettier-ignore -->
+<div class="container">
+  <div class="form-group mb-2">
+    <label for="contactMethod">Vrsta rezervacije</label>
+    <select 
+        name="contactMethod" 
+        id="contactMethod" 
+        class="form-control"
+        [(ngModel)]="vrstaRezervacije">
+        <option [value]="0">RV-ji</option>
+        <option [value]="1">RV parkirišča</option>
+    </select>
+  </div>
+
+  <div *ngIf="vrstaRezervacije == 0" class="card">
+    <ul class="list-group p-3">
+      
+      <div *ngIf="rvsWithReservations == null" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+      <div *ngIf="rvsWithReservations != null && rvsWithReservations.length == 0">
+        Ni rezerviranih RV-jev
+      </div>
+      <li class="list-group-item list-group-item-primary" *ngFor="let rvsWithReservation of rvsWithReservations">
+        <strong>IME:</strong> {{rvsWithReservation.manufacturer}}
+        <div><strong>CENA NA DAN:</strong> {{rvsWithReservation.cost_per_day}}€</div>
+        <div><strong>OCENA:</strong> {{rvsWithReservation.rating}}</div>
+        <div><strong>DATUM REZERVACIJE:</strong> {{rvsWithReservation.reservation.startDate | date}} - {{rvsWithReservation.reservation.endDate | date}}</div>
+        <!-- <div class="btn-group" role="group" aria-label="Basic example">
+          <button (click)="deletePark(park)" class="btn btn-danger">PREKLIČI REZERVACIJO</button>
+        </div> -->
+    
+      </li>
+    </ul>
+  </div>
+</div>
