@@ -17,7 +17,7 @@ export class RvParkComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService,
         private rvParkService: RvParkService
-    ) {}
+    ) { }
 
     public parks: RvPark[];
     public newPark: any = {
@@ -44,7 +44,7 @@ export class RvParkComponent implements OnInit {
         return this.authenticationService.isLoggedIn();
     }
 
-    private makeReservation(park: RvPark) {
+    public makeReservation(park: RvPark) {
         console.log(this.authenticationService.appUser);
     }
 
@@ -61,7 +61,7 @@ export class RvParkComponent implements OnInit {
         });
     }
 
-    private kreirajParkModal() {
+    public kreirajParkModal() {
         jQuery(this.ustvariParkModal.nativeElement).modal("show");
     }
 
@@ -70,7 +70,7 @@ export class RvParkComponent implements OnInit {
         jQuery(this.ustvariParkModal.nativeElement).modal("hide");
     }
 
-    private kreirajPark() {
+    public kreirajPark() {
         this.newPark.user_id = this.authenticationService.appUser.user_id;
         this.rvParkService
             .createPark(this.newPark)

@@ -13,10 +13,11 @@ declare var jQuery: any;
 })
 export class RvCatalogComponent implements OnInit {
   @ViewChild("createRvModal", { static: false }) createRvModal: ElementRef;
+  @ViewChild("reviewModal", { static: false }) reviewModal: ElementRef;
 
   constructor(
-      private authenticationService: AuthenticationService,
-      private rvCatalogService: RvCatalogService
+    private authenticationService: AuthenticationService,
+    private rvCatalogService: RvCatalogService
   ) { }
 
   public rvs: Rv[];
@@ -31,29 +32,30 @@ export class RvCatalogComponent implements OnInit {
     cost_per_day: "",
     num_of_reviews: ""
   };
+  public selectedRv: Rv;
 
 
   private getRvs(): void {
     this.rvCatalogService.getRvs().then((rvs) => {
-        console.log(rvs);
-        this.rvs = rvs;
+      console.log(rvs);
+      this.rvs = rvs;
     });
-}
+  }
 
-  public createRv():void {
+  public createRv(): void {
     this.newRv.user_id = this.authenticationService.appUser.user_id;
     this.newRv.rating = 0
     this.newRv.num_of_reviews = 0
     this.rvCatalogService
-        .createRv(this.newRv)
-        .then((rv) => {
-            console.log(rv);
-            this.rvs.push(rv);
-            jQuery(this.createRvModal.nativeElement).modal("hide");
-        })
-        .catch((napaka) => {
-            console.log(napaka);
-        });
+      .createRv(this.newRv)
+      .then((rv) => {
+        console.log(rv);
+        this.rvs.push(rv);
+        jQuery(this.createRvModal.nativeElement).modal("hide");
+      })
+      .catch((napaka) => {
+        console.log(napaka);
+      });
   }
 
   private showCreateModal() {
@@ -65,9 +67,18 @@ export class RvCatalogComponent implements OnInit {
   }
 
   public isLoggedIn(): boolean {
-    console.log("PRIJAVA " + this.authenticationService.isLoggedIn());
     return this.authenticationService.isLoggedIn();
-}
+  }
+
+  public openReviewModal(rv: Rv) {
+    this.selectedRv = rv;
+    jQuery(this.reviewModal.nativeElement).modal('show');
+  }
+
+  public closeReviewModal(): void {
+    // window.location.reload();
+    jQuery(this.reviewModal.nativeElement).modal('hide');
+  }
 
   ngOnInit() {
     this.getRvs()

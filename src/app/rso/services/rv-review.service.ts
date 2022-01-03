@@ -14,8 +14,8 @@ export class RvReviewService {
 
   baseUrl = environment.apiUrl;
 
-  public getRvReviews(): Promise<any> {
-    const url: string = `${this.baseUrl}${ApiEndpoints.rvReviews}/reviews`;
+  public getRvReviewsFilter(filter: string): Promise<any> {
+    const url: string = `${this.baseUrl}${ApiEndpoints.rvReviews}/reviews?${filter}`;
     return this.http
       .get(url)
       .toPromise()
