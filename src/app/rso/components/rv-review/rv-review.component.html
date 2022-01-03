@@ -1,0 +1,82 @@
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form (ngSubmit)="createReview()">
+        <div class="form-group">
+          <label>Komentar</label>
+          <input [(ngModel)]="newReview.comment" id="comment" type="text" class="form-control" placeholder="Vnesite komentar" required name="comment" />
+        </div>
+        <div class="form-group">
+          <label>Ocena</label>
+          <input [(ngModel)]="newReview.score" id="score" placeholder="Vnesite oceno" type="number" class="form-control" required name="score" />
+        </div>
+        <div class="form-group">
+          <button [disabled]="!fieldsNotEmpty()" type="submit" id="add_review_button" class="btn btn-danger">
+            Dodaj komentar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div>
+    <button (click)="openAddReviewModal()" class="btn btn-primary">
+      Dodaj komentar <i class="fas fa-plus"></i>
+    </button>
+  </div>
+  <br>
+  <div class="card">
+    <ul class="list-group p-3">
+      <li class="list-group-item list-group-item-primary" *ngFor="let review of reviews">
+        <strong>KOMENTAR:</strong> {{review.comment}}
+        <div><strong>OCENA:</strong> {{review.score}}</div>
+        <div><strong>DATUM:</strong> {{review.review_date}}</div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <!-- <button (click)="makeReservation(park)" class="btn btn-primary">REZERVIRAJ</button> -->
+          <!-- <button (click)="deletePark(park)" class="btn btn-danger">IZBRIŠI</button> -->
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<!-- Modal ustvari -->
+<div #addReviewModal class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Dodaj komentar</h3>
+        <button (click)="closeAddReviewModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <form (ngSubmit)="createReview()">
+                <div class="form-group">
+                  <label>Komentar</label>
+                  <input [(ngModel)]="newReview.comment" id="comment" type="text" class="form-control" placeholder="Vnesite komentar" required name="comment" />
+                </div>
+                <div class="form-group">
+                  <label>Ocena</label>
+                  <input [(ngModel)]="newReview.score" id="score" placeholder="Vnesite oceno" type="number" class="form-control" required name="score" />
+                </div>
+                <div class="form-group">
+                  <button [disabled]="!fieldsNotEmpty()" type="submit" id="add_review_button" class="btn btn-danger">
+                    Dodaj komentar
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

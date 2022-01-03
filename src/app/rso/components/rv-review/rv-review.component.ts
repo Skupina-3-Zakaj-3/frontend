@@ -1,7 +1,8 @@
 import { RvReviewService } from './../../services/rv-review.service';
 import { RvReview } from './../../models/rv-review';
-import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input, OnChanges, AfterViewInit, SimpleChanges } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
+import { Rv } from '../../models/rv';
 
 declare var jQuery: any;
 
@@ -10,10 +11,11 @@ declare var jQuery: any;
   templateUrl: './rv-review.component.html',
   styleUrls: ['./rv-review.component.css']
 })
-export class RvReviewComponent implements OnInit {
+export class RvReviewComponent implements OnInit, OnChanges {
 
   @ViewChild('izbrisiModal', { static: false }) izbrisiModal: ElementRef;
-  @ViewChild('ustvariReviewModal', { static: false }) ustvariReviewModal: ElementRef;
+  @ViewChild('addReviewModal', { static: false }) addReviewModal: ElementRef;
+  @Input() selectedRv: Rv;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -26,19 +28,24 @@ export class RvReviewComponent implements OnInit {
     score: "",
     user_id: "",
     rv_id: "",
-    review_date: ""
   };
 
   private getRvReviews(): void {
-    this.rvReviewService
-      .getRvReviews()
-      .then(reviews => {
-        console.log(reviews);
-        this.reviews = reviews;
-      });
+    if (this.selectedRv) {
+      var filter = `filter=rv_id:EQ:${this.selectedRv.rv_id}`;
+      this.rvReviewService
+        .getRvReviewsFilter(filter)
+        .then(reviews => {
+          console.log(reviews);
+          this.reviews = reviews;
+        });
+    }
   }
 
   ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     this.getRvReviews();
   }
 
@@ -61,27 +68,38 @@ export class RvReviewComponent implements OnInit {
       });
   }
 
-  private kreirajReviewModal() {
-    jQuery(this.ustvariReviewModal.nativeElement).modal('show');
-  }
 
-  public zapriModalnoOkno(): void {
-    // window.location.reload();
-    jQuery(this.ustvariReviewModal.nativeElement).modal('hide');
-  }
-
-  private kreirajReview() {
-    this.newReview.user_id = 1;//this.authenticationService.appUser.user_id;
+  public createReview() {
+    console.log(this.selectedRv);
+    this.newReview.user_id = this.authenticationService.appUser.user_id;
+    this.newReview.rv_id = this.selectedRv.rv_id;
     this.rvReviewService
       .createReview(this.newReview)
       .then((review) => {
         console.log(review);
         this.reviews.push(review);
-        jQuery(this.ustvariReviewModal.nativeElement).modal('hide');
+        this.resetFields();
+        window.location.reload();
       })
       .catch((napaka) => {
         console.log(napaka);
       })
+  }
+
+  public fieldsNotEmpty() {
+    if (this.newReview.comment != "" && (this.newReview.score != "" && this.newReview.score != null)) {
+      return true;
+    }
+    return false;
+  }
+
+  public openAddReviewModal() {
+    jQuery(this.addReviewModal.nativeElement).modal("show");
+  }
+
+  public closeAddReviewModal(): void {
+    window.location.reload();
+    jQuery(this.addReviewModal.nativeElement).modal('hide');
   }
 
   public resetFields(): void {

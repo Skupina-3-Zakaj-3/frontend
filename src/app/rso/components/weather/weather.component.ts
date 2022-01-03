@@ -22,7 +22,7 @@ export class WeatherComponent implements OnInit {
   };
   public weather: Weather;
 
-  private getWeather(): void {
+  public getWeather(): void {
     console.log("NOVO: " + this.newWeather.locationName);
     this.weatherService
       .getWeather(this.newWeather)

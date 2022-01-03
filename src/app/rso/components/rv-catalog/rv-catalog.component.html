@@ -1,0 +1,99 @@
+<div class="container">
+  <div style="margin-top: 20px;">
+    <!-- <app-weather></app-weather> -->
+
+  </div>
+
+  <div>
+    <button (click)="showCreateModal()" class="btn btn-primary">
+      Dodaj nov RV <i class="fas fa-plus"></i>
+    </button>
+  </div>
+
+  <br>
+
+  <div class="card">
+    <ul class="list-group p-3">
+      <li class="list-group-item list-group-item-primary center" *ngFor="let rv of rvs">
+        <strong>KAPACITETA:</strong> {{rv.capacity}}
+        <div><strong>CENA NA DAN:</strong> {{rv.cost_per_day}}€</div>
+        <div><strong>OPIS:</strong> {{rv.description}}</div>
+        <div><strong>ZNAMKA IN LETO:</strong> {{rv.manufacturer}} ({{rv.year}})</div>
+        <div><strong>OCENA:</strong> {{rv.rating}}({{rv.num_of_reviews}})</div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button (click)="openReviewModal(rv)" class="btn btn-primary">KOMENTARJI</button>
+          <!-- <button (click)="deletePark(park)" class="btn btn-danger">IZBRIŠI</button> -->
+        </div>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- Modal ustvari -->
+  <div #createRvModal class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Dodaj nov RV</h3>
+          <button (click)="closeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <app-ustvarjanje-parka [trenutniUporabnik]="trenutniUporabnik">
+          </app-ustvarjanje-parka> -->
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <form (ngSubmit)="createRv()">
+                  <div class="form-group">
+                    <label>Kapaciteta vozila</label>
+                    <input [(ngModel)]="newRv.capacity" id="name" type="text" class="form-control" placeholder="Vnesite kapaciteto vozila" required name="name" />
+                  </div>
+                  <div class="form-group">
+                    <label>Opis vozila</label>
+                    <input [(ngModel)]="newRv.description" id="description" placeholder="Vnesite opis vozila" type="text" class="form-control" required name="description" />
+                  </div>
+                  <div class="form-group">
+                    <label>Cena rezervacije na dan</label>
+                    <input [(ngModel)]="newRv.cost_per_day" id="cost_per_day" placeholder="Vnesite ceno rezervacije na dan" type="number" class="form-control" required name="cost_per_day" />
+                  </div>
+                  <div class="form-group">
+                    <label>Znamka</label>
+                    <input [(ngModel)]="newRv.manufacturer" id="location" placeholder="Vnesite znamko vozila" type="text" class="form-control" required name="location" />
+                  </div>
+                  <div class="form-group">
+                    <label>Letnik</label>
+                    <input [(ngModel)]="newRv.year" id="location" placeholder="Vnesite letnik vozila" type="text" class="form-control" required name="location" />
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" id="addRvButton" class="btn btn-danger">
+                      Dodaj vozilo
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal ustvari -->
+  <div #reviewModal class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Dodaj oceno</h3>
+          <button (click)="closeReviewModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <app-rv-review [selectedRv]="selectedRv"></app-rv-review>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { RvReviewComponent } from './rso/components/rv-review/rv-review.componen
 import { RvParkComponent } from './rso/components/rv-park/rv-park.component';
 import { OgrodjeComponent } from './rso/components/ogrodje/ogrodje.component';
 import { PrijavaComponent } from './rso/components/prijava/prijava.component';
+import { RvCatalogComponent } from './rso/components/rv-catalog/rv-catalog.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -12,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { RsoService } from './rso/services/rso.service';
+
 
 
 @NgModule({
@@ -28,6 +30,7 @@ import { RsoService } from './rso/services/rso.service';
         RvParkComponent,
         RvReviewComponent,
         WeatherComponent,
+        RvCatalogComponent,
     ],
     providers: [RsoService],
     bootstrap: [OgrodjeComponent]

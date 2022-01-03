@@ -17,3 +17,7 @@ li {
 .container {
   text-align: center;
 }
+
+.modal-dialog {
+  height: 1000px !important;
+}
