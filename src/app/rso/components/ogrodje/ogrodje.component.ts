@@ -27,5 +27,6 @@ export class OgrodjeComponent implements OnInit {
 
     odjava() {
         this.authenticationService.logout();
+        this.usmerjevalnik.navigateByUrl("/prijava");
     }
 }

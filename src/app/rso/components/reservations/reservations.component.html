@@ -20,7 +20,7 @@
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-      <div *ngIf="rvsWithReservations.length == 0">
+      <div *ngIf="rvsWithReservations != null && rvsWithReservations.length == 0">
         Ni rezerviranih RV-jev
       </div>
       <li class="list-group-item list-group-item-primary" *ngFor="let rvsWithReservation of rvsWithReservations">

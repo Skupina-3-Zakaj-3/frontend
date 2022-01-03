@@ -12,11 +12,12 @@ export class PrijavaComponent implements OnInit {
     constructor(
         private usmerjevalnik: Router,
         private authenticationService: AuthenticationService
-    ) { }
+    ) {}
 
-    ngOnInit() { }
+    ngOnInit() {}
 
     izvediPrijavo() {
         this.authenticationService.googlePrijava();
+        this.usmerjevalnik.navigateByUrl("/reservations");
     }
 }
