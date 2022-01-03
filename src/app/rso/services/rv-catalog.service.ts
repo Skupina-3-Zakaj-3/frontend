@@ -22,8 +22,8 @@ export class RvCatalogService {
     }
 
     public deleteRv(rvId: number): Promise<any> {
-      // const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs/${rvId}`;
-      const url = `http://localhost:8081/v1/rvs/${rvId}`
+      const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs/${rvId}`;
+    //   const url = `http://localhost:8081/v1/rvs/${rvId}`
       return this.http
         .delete(url)
         .toPromise()

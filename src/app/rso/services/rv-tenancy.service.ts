@@ -17,4 +17,11 @@ export class RvTenancyService {
 
         return this.http.get(url).pipe(map((res) => res as any[]));
     }
+
+    getUserParkReservations(userId: number) {
+        const url = `${this.baseUrl}${ApiEndpoints.parkTenancies}/rv-park-tenancies/users/${userId}`;
+        // const url = `http://localhost:8088/v1/rv-park-tenancies/users/${userId}`
+
+        return this.http.get(url).pipe(map((res) => res as any[]));
+    }
 }

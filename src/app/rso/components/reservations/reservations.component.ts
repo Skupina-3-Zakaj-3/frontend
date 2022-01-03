@@ -22,6 +22,7 @@ export class ReservationsComponent implements OnInit {
 
     ngOnInit() {
         this.getRvReservations();
+        this.getParkReservations()
     }
 
     private getRvReservations(): void {
@@ -29,6 +30,14 @@ export class ReservationsComponent implements OnInit {
             .getUserReservations(this.authenticationService.appUser.user_id)
             .subscribe((res) => {
                 this.rvsWithReservations = res;
+            });
+    }
+
+    private getParkReservations(): void {
+        this.rvTenancyService
+            .getUserParkReservations(this.authenticationService.appUser.user_id)
+            .subscribe((res) => {
+                this.rvParksWithReservations = res;
             });
     }
 }

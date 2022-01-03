@@ -15,8 +15,8 @@ export class RvParkService {
   baseUrl = environment.apiUrl;
 
   public getRvParks(): Promise<any> {
-    // const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks`;
-    const url = 'http://localhost:8089/v1/parks'
+    const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks`;
+    // const url = 'http://localhost:8089/v1/parks'
     return this.http
       .get(url)
       .toPromise()
@@ -24,8 +24,8 @@ export class RvParkService {
   }
 
   public deletePark(rvParkId: number): Promise<any> {
-    // const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks/${rvParkId}`;
-    const url = `http://localhost:8089/v1/parks/${rvParkId}`
+    const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks/${rvParkId}`;
+    // const url = `http://localhost:8089/v1/parks/${rvParkId}`
     return this.http
       .delete(url)
       .toPromise()
@@ -45,8 +45,8 @@ export class RvParkService {
 
   public reservePark(parkId: number, userId: number, startDate: Date, endDate: Date) {
     console.log(startDate, endDate);
-    // const url: string = `${this.baseUrl}${ApiEndpoints.rvTenancies}/rv-park-tenancies`;
-    const url = `http://localhost:8088/v1/rv-park-tenancies/`
+    const url: string = `${this.baseUrl}${ApiEndpoints.parkTenancies}/rv-park-tenancies`;
+    // const url = `http://localhost:8088/v1/rv-park-tenancies/`
     var s = new Date(startDate).toISOString();
     var e = new Date(endDate).toISOString();
     return this.http.post(url, {
