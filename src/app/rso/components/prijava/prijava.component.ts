@@ -17,7 +17,8 @@ export class PrijavaComponent implements OnInit {
     ngOnInit() {}
 
     izvediPrijavo() {
-        this.authenticationService.googlePrijava();
-        this.usmerjevalnik.navigateByUrl("/reservations");
+        this.authenticationService.googlePrijava().then((_) => {
+            this.usmerjevalnik.navigateByUrl("/reservations");
+        });
     }
 }

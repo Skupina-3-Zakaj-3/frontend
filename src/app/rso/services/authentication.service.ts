@@ -23,16 +23,19 @@ export class AuthenticationService {
             "mywindow",
             "location=1,status=1,scrollbars=1, width=800,height=800"
         );
-        let listener = window.addEventListener("message", (message) => {
-            this.setSession(
-                message.data.access_token,
-                message.data.email,
-                message.data.userId,
-                message.data.name,
-                message.data.surname
-            );
-            this.readUserFromLocalStorage();
-            console.log(this._appUser);
+
+        return new Promise((resolve, reject) => {
+            window.addEventListener("message", (message) => {
+                this.setSession(
+                    message.data.access_token,
+                    message.data.email,
+                    message.data.userId,
+                    message.data.name,
+                    message.data.surname
+                );
+                this.readUserFromLocalStorage();
+                resolve(null);
+            });
         });
     }
 

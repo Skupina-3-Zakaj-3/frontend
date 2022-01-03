@@ -17,7 +17,7 @@ export class RvParkComponent implements OnInit {
     constructor(
         private authenticationService: AuthenticationService,
         private rvParkService: RvParkService
-    ) { }
+    ) {}
 
     public parks: RvPark[];
     public newPark: any = {
@@ -30,7 +30,6 @@ export class RvParkComponent implements OnInit {
 
     private getRvParks(): void {
         this.rvParkService.getRvParks().then((parks) => {
-            console.log(parks);
             this.parks = parks;
         });
     }
@@ -40,7 +39,6 @@ export class RvParkComponent implements OnInit {
     }
 
     public isLoggedIn(): boolean {
-        console.log("PRIJAVA " + this.authenticationService.isLoggedIn());
         return this.authenticationService.isLoggedIn();
     }
 
@@ -49,7 +47,6 @@ export class RvParkComponent implements OnInit {
     }
 
     public deletePark(park: RvPark) {
-        console.log(park);
         this.rvParkService.deletePark(park.rv_park_id).then(() => {
             // window.location.reload();
             for (var i = 0; i < this.parks.length; i++) {

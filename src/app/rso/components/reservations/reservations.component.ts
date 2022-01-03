@@ -28,7 +28,6 @@ export class ReservationsComponent implements OnInit {
         this.rvTenancyService
             .getUserReservations(this.authenticationService.appUser.user_id)
             .subscribe((res) => {
-                console.log(res);
                 this.rvsWithReservations = res;
             });
     }

@@ -14,7 +14,7 @@ export class RvTenancyService {
     getUserReservations(userId: number) {
         const query = `?userId=${userId}`;
         const url = `${this.baseUrl}${ApiEndpoints.rvTenancies}/rv-reservations/rvs${query}`;
-        console.log(url);
+
         return this.http.get(url).pipe(map((res) => res as any[]));
     }
 }

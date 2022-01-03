@@ -43,7 +43,6 @@ export class RvCatalogComponent implements OnInit {
     formErrorMessage: string = null;
     private getRvs(): void {
         this.rvCatalogService.getRvs().then((rvs) => {
-            console.log(rvs);
             this.rvs = rvs;
         });
     }
@@ -55,7 +54,6 @@ export class RvCatalogComponent implements OnInit {
         this.rvCatalogService
             .createRv(this.newRv)
             .then((rv) => {
-                console.log(rv);
                 this.rvs.push(rv);
                 jQuery(this.createRvModal.nativeElement).modal("hide");
             })
