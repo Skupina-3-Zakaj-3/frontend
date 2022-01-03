@@ -1,1 +1,30 @@
-<p>rv-catalog works!</p>
+<div class="container">
+  <div style="margin-top: 20px;">
+    <!-- <app-weather></app-weather> -->
+
+  </div>
+
+  <!-- <div>
+    <button (click)="kreirajParkModal()" class="btn btn-primary">
+      Dodaj nov RV park <i class="fas fa-plus"></i>
+    </button>
+  </div> -->
+
+  <br>
+
+  <div class="card">
+    <ul class="list-group p-3">
+      <li class="list-group-item list-group-item-primary center" *ngFor="let rv of rvs">
+        <strong>KAPACITETA:</strong> {{rv.capacity}}
+        <div><strong>CENA NA DAN:</strong> {{rv.cost_per_day}}€</div>
+        <div><strong>OPIS:</strong> {{rv.description}}</div>
+        <div><strong>ZNAMKA IN LETO:</strong> {{rv.manufacturer}} ({{rv.year}})</div>
+        <div><strong>OCENA:</strong> {{rv.rating}}</div>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <!-- <button (click)="makeReservation(park)" class="btn btn-primary">REZERVIRAJ</button>
+          <button (click)="deletePark(park)" class="btn btn-danger">IZBRIŠI</button> -->
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
