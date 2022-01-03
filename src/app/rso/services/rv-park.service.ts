@@ -15,7 +15,8 @@ export class RvParkService {
   baseUrl = environment.apiUrl;
 
   public getRvParks(): Promise<any> {
-    const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks`;
+    // const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks`;
+    const url = 'http://localhost:8089/v1/parks'
     return this.http
       .get(url)
       .toPromise()
@@ -41,6 +42,18 @@ export class RvParkService {
         return Promise.reject(napaka);
       });
   }
+
+  public reservePark(parkId: number, userId: number, startDate: Date, endDate: Date) {
+    // const url: string = `${this.baseUrl}${ApiEndpoints.rvTenancies}/rv-park-tenancies`;
+    const url = `http://localhost:8089/v1/rv-park-tenancies/${parkId}`
+    return this.http.post(url, {
+        parkId: parkId,
+        userId: userId,
+        startDate: startDate,
+        endDate: endDate,
+        parkBillId: 1,
+    });
+}
 
   private catchException(napaka: any): Promise<any> {
     console.error(

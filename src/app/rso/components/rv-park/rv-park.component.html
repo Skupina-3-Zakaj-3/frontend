@@ -20,11 +20,61 @@
         <div><strong>OPIS:</strong> {{park.description}}</div>
         <div><strong>LOKACIJA:</strong> {{park.location}}</div>
         <div class="btn-group" role="group" aria-label="Basic example">
-          <button (click)="makeReservation(park)" class="btn btn-primary">REZERVIRAJ</button>
+          <button
+              (click)="newReservation.parkId = park.rv_park_id; showReserveParkModal()"
+              class="btn btn-primary"
+          >
+              REZERVIRAJ
+          </button>
           <button (click)="deletePark(park)" class="btn btn-danger">IZBRIŠI</button>
-        </div>
+      </div>
       </li>
     </ul>
+  </div>
+</div>
+
+
+<!-- Modal ustvari -->
+<div #reserveParkModal class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Najemi park</h3>
+        <button (click)="closeReserveParkModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- <app-ustvarjanje-parka [trenutniUporabnik]="trenutniUporabnik">
+        </app-ustvarjanje-parka> -->
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <form (ngSubmit)="reservePark()">
+                <div *ngIf="formErrorMessage" class="alert alert-danger" role="alert">
+                  {{ formErrorMessage }}
+                </div>
+                <div class="form-group">
+                  <label>Datum začetka najema</label>
+                  <input [(ngModel)]="newReservation.startDate" id="dateStart" type="date" class="form-control"
+                    placeholder="Vnesite datum začetka najema" required name="dateStart" />
+                </div>
+                <div class="form-group">
+                  <label>Datum konca najema</label>
+                  <input [(ngModel)]="newReservation.endDate" id="dateEnd" placeholder="Vnesite datum vrnitve"
+                    type="date" class="form-control" required name="dateEnd" />
+                </div>
+                <div class="form-group">
+                  <button type="submit" id="addParkButton" class="btn btn-danger">
+                    Potrdi rezervacijo
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -48,19 +98,24 @@
               <form (ngSubmit)="kreirajPark()">
                 <div class="form-group">
                   <label>Ime parka</label>
-                  <input [(ngModel)]="newPark.name" id="name" type="text" class="form-control" placeholder="Vnesite ime parka" required name="name" />
+                  <input [(ngModel)]="newPark.name" id="name" type="text" class="form-control"
+                    placeholder="Vnesite ime parka" required name="name" />
                 </div>
                 <div class="form-group">
                   <label>Opis parka</label>
-                  <input [(ngModel)]="newPark.description" id="description" placeholder="Vnesite opis parka" type="text" class="form-control" required name="description" />
+                  <input [(ngModel)]="newPark.description" id="description" placeholder="Vnesite opis parka" type="text"
+                    class="form-control" required name="description" />
                 </div>
                 <div class="form-group">
                   <label>Cena rezervacije na dan</label>
-                  <input [(ngModel)]="newPark.cost_per_day" id="cost_per_day" placeholder="Vnesite ceno rezervacije na dan" type="number" class="form-control" required name="cost_per_day" />
+                  <input [(ngModel)]="newPark.cost_per_day" id="cost_per_day"
+                    placeholder="Vnesite ceno rezervacije na dan" type="number" class="form-control" required
+                    name="cost_per_day" />
                 </div>
                 <div class="form-group">
                   <label>Lokacija parka</label>
-                  <input [(ngModel)]="newPark.location" id="location" placeholder="Vnesite lokacijo parka" type="text" class="form-control" required name="location" />
+                  <input [(ngModel)]="newPark.location" id="location" placeholder="Vnesite lokacijo parka" type="text"
+                    class="form-control" required name="location" />
                 </div>
                 <div class="form-group">
                   <button type="submit" id="ustvari_park_button" class="btn btn-danger">

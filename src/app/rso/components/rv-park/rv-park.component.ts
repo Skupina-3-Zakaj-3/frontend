@@ -13,6 +13,7 @@ declare var jQuery: any;
 export class RvParkComponent implements OnInit {
     @ViewChild("izbrisiModal", { static: false }) izbrisiModal: ElementRef;
     @ViewChild("ustvariParkModal", { static: false }) ustvariParkModal: ElementRef;
+    @ViewChild("reserveParkModal", { static: false }) reserveParkModal: ElementRef;
 
     constructor(
         private authenticationService: AuthenticationService,
@@ -28,6 +29,15 @@ export class RvParkComponent implements OnInit {
         location: "",
     };
 
+    public newReservation: any = {
+        parkId: 0,
+        startDate: null,
+        endDate: null,
+    };
+
+    formErrorMessage: string = null;
+
+
     private getRvParks(): void {
         this.rvParkService.getRvParks().then((parks) => {
             this.parks = parks;
@@ -36,6 +46,18 @@ export class RvParkComponent implements OnInit {
 
     ngOnInit() {
         this.getRvParks();
+        let currentDate: Date = new Date();
+        this.newReservation.startDate = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate()
+        );
+        currentDate.setDate(currentDate.getDate() + 7);
+        this.newReservation.endDate = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            currentDate.getDate()
+        );
     }
 
     public isLoggedIn(): boolean {
@@ -58,13 +80,33 @@ export class RvParkComponent implements OnInit {
         });
     }
 
-    public kreirajParkModal() {
-        jQuery(this.ustvariParkModal.nativeElement).modal("show");
-    }
-
-    public zapriModalnoOkno(): void {
-        // window.location.reload();
-        jQuery(this.ustvariParkModal.nativeElement).modal("hide");
+    async reservePark() {
+        console.log(this.newReservation.rv_park_id)
+        if (this.newReservation.startDate > this.newReservation.endDate) {
+            this.formErrorMessage =
+                "Datum začetka najema ne more biti večji od datuma vrnitve RV-ja!";
+            return;
+        } else if (this.newReservation.endDate < this.newReservation.startDate) {
+            this.formErrorMessage = "Datum vrnitve RV-ja ne more biti manjša od datuma najema!";
+            return;
+        } else if (this.newReservation.endDate == this.newReservation.startDate) {
+            this.formErrorMessage = "Datum ne smeta biti enaka!";
+            return;
+        }
+        try {
+            await this.rvParkService
+                .reservePark(
+                    this.newReservation.parkId,
+                    this.authenticationService.appUser.user_id,
+                    this.newReservation.startDate,
+                    this.newReservation.endDate
+                )
+                .toPromise();
+            this.closeReserveParkModal();
+        } catch (error) {
+            console.error(error);
+            this.formErrorMessage = "Rezervacija je bila neuspešna!";
+        }
     }
 
     public kreirajPark() {
@@ -79,6 +121,25 @@ export class RvParkComponent implements OnInit {
             .catch((napaka) => {
                 console.log(napaka);
             });
+    }
+
+    public kreirajParkModal() {
+        jQuery(this.ustvariParkModal.nativeElement).modal("show");
+    }
+    
+
+    public zapriModalnoOkno(): void {
+        // window.location.reload();
+        jQuery(this.ustvariParkModal.nativeElement).modal("hide");
+    }
+
+
+    showReserveParkModal(park:RvPark) {
+        jQuery(this.reserveParkModal.nativeElement).modal("show");
+    }
+    closeReserveParkModal() {
+        this.formErrorMessage = "";
+        jQuery(this.reserveParkModal.nativeElement).modal("hide");
     }
 
     public resetFields(): void {
