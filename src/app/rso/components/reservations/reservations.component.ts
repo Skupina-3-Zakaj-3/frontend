@@ -12,10 +12,13 @@ import { RvTenancyService } from "../../services/rv-tenancy.service";
 })
 export class ReservationsComponent implements OnInit {
     rvsWithReservations: any[];
+    rvParksWithReservations: any[];
     constructor(
         private rvTenancyService: RvTenancyService,
         private authenticationService: AuthenticationService
     ) {}
+
+    vrstaRezervacije = VrstaRezervacije.rv;
 
     ngOnInit() {
         this.getRvReservations();
@@ -29,4 +32,9 @@ export class ReservationsComponent implements OnInit {
                 this.rvsWithReservations = res;
             });
     }
+}
+
+export enum VrstaRezervacije {
+    rv,
+    rvPark,
 }
