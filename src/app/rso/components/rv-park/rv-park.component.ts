@@ -81,7 +81,6 @@ export class RvParkComponent implements OnInit {
     }
 
     async reservePark() {
-        console.log(this.newReservation.rv_park_id)
         if (this.newReservation.startDate > this.newReservation.endDate) {
             this.formErrorMessage =
                 "Datum začetka najema ne more biti večji od datuma vrnitve RV-ja!";
@@ -94,6 +93,7 @@ export class RvParkComponent implements OnInit {
             return;
         }
         try {
+            console.log(this.newReservation, this.authenticationService.appUser.user_id);
             await this.rvParkService
                 .reservePark(
                     this.newReservation.parkId,
