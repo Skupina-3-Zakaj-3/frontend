@@ -11,7 +11,7 @@ import { RvTenancyService } from "../../services/rv-tenancy.service";
     styleUrls: ["./reservations.component.css"],
 })
 export class ReservationsComponent implements OnInit {
-    public rvReservations: RvReservation[];
+    rvsWithReservations: any[];
     constructor(
         private rvTenancyService: RvTenancyService,
         private authenticationService: AuthenticationService
@@ -23,9 +23,10 @@ export class ReservationsComponent implements OnInit {
 
     private getRvReservations(): void {
         this.rvTenancyService
-            .getUserReservations(1 /* this.authenticationService.appUser.user_id */)
+            .getUserReservations(this.authenticationService.appUser.user_id)
             .subscribe((res) => {
-                this.rvReservations = res;
+                console.log(res);
+                this.rvsWithReservations = res;
             });
     }
 }
