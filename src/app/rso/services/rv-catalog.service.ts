@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { Rv } from '../models/rv';
 import { ApiEndpoints } from './api-endpoints';
 
 @Injectable({
@@ -30,16 +31,17 @@ export class RvCatalogService {
   //     .catch(this.catchException);
   // }
 
-  // public createPark(park: RvPark): Promise<RvPark> {
-  //   const url: string = `${this.baseUrl}${ApiEndpoints.rvParks}/parks`;
-  //   return this.http
-  //     .post(url, park)
-  //     .toPromise()
-  //     .then((odgovor) => odgovor as RvPark)
-  //     .catch((napaka) => {
-  //       return Promise.reject(napaka);
-  //     });
-  // }
+  public createRv(rv: Rv): Promise<Rv> {
+    const url: string = `${this.baseUrl}${ApiEndpoints.rvs}/rvs`;
+    // const url = 'http://localhost:8081/v1/rvs'
+    return this.http
+      .post(url, rv)
+      .toPromise()
+      .then((odgovor) => odgovor as Rv)
+      .catch((napaka) => {
+        return Promise.reject(napaka);
+      });
+  }
 
   private catchException(napaka: any): Promise<any> {
     console.error(
