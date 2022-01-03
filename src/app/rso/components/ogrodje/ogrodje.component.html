@@ -10,7 +10,7 @@
 
     <!--Atribute prestavimo na sredo menija-->
     <div class="collapse navbar-collapse"></div>
-    <div class="collapse navbar-collapse" id="navbarMenu">
+    <div *ngIf="jePrijavljen()" class="collapse navbar-collapse" id="navbarMenu">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a routerLink="/rvs" class="nav-link">Katalog RV-jev <i class="fas fa-caravan"></i></a>
@@ -38,37 +38,37 @@
 </header>
 
 <div class="container">
-    <!--<app-prijavna-stran></app-prijavna-stran>-->
-    <router-outlet></router-outlet>
+  <!--<app-prijavna-stran></app-prijavna-stran>-->
+  <router-outlet></router-outlet>
 </div>
 
 <!-- Footer -->
 <footer id="sticky-footer" class="py-4 bg-dark text-white-50">
-    <div class="text-center">
-        <small>Copyright &copy; Designed by @FRI_STUDENTS</small>
-    </div>
+  <div class="text-center">
+    <small>Copyright &copy; Designed by @FRI_STUDENTS</small>
+  </div>
 </footer>
 <!-- Footer -->
 
 <!-- Modal -->
 <div #odjavaModal class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Opozorilo!</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Ste prepričani, da se želite odjaviti?</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger" (click)="odjava()" data-dismiss="modal">Da</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                    Prekliči
-                </button>
-            </div>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Opozorilo!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Ste prepričani, da se želite odjaviti?</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" (click)="odjava()" data-dismiss="modal">Da</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Prekliči
+        </button>
+      </div>
     </div>
+  </div>
 </div>
