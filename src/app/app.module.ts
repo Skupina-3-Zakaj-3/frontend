@@ -15,6 +15,7 @@ import { RsoService } from "./rso/services/rso.service";
 import { ReservationsComponent } from "./rso/components/reservations/reservations.component";
 import localeSl from "@angular/common/locales/sl";
 import { registerLocaleData } from "@angular/common";
+import { RvCatalogComponent } from "./rso/components/rv-catalog/rv-catalog.component";
 
 registerLocaleData(localeSl);
 
@@ -28,6 +29,7 @@ registerLocaleData(localeSl);
         RvReviewComponent,
         WeatherComponent,
         ReservationsComponent,
+        RvCatalogComponent,
     ],
     providers: [RsoService, { provide: LOCALE_ID, useValue: "sl-SI" }],
     bootstrap: [OgrodjeComponent],
