@@ -55,6 +55,6 @@ jobs:
               id: deploy-to-webapp
               uses: azure/webapps-deploy@v2
               with:
-                  app-name: "rv-and-v"
+                  app-name: "rvandv"
                   publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2D0A5B467D92457ABDA0184C24C9037A }}
                   package: ./dist/odjemalec-prpo
