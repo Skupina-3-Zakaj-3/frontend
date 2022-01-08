@@ -3,6 +3,7 @@ export class RvReview {
   comment: string;
   score: number;
   user_id: number;
+  userName: string;
   rv_id: number;
   review_date: Date;
 }
